@@ -1,0 +1,341 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ─────────────────────────────────────────────── */
+:root {
+  /* Palette — warm cream / ink */
+  --cream-50:  #FDFBF7;
+  --cream-100: #F8F3EA;
+  --cream-200: #F0E8D8;
+  --cream-300: #E4D5BC;
+  --ink-900:   #1A1714;
+  --ink-700:   #3D3830;
+  --ink-500:   #6B6459;
+  --ink-300:   #A8A099;
+  --ink-200:   #C4BDB5;
+  --ink-100:   #DDD8D1;
+
+  /* Accent */
+  --accent:       #2D6A4F;   /* forest green */
+  --accent-light: #D8F3DC;
+  --accent-dark:  #1B4332;
+  --amber:        #E76F00;
+  --amber-light:  #FFF3E0;
+
+  /* Radius */
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  18px;
+  --radius-xl:  24px;
+  --radius-2xl: 32px;
+
+  /* Shadow */
+  --shadow-xs: 0 1px 2px rgba(26,23,20,0.06);
+  --shadow-sm: 0 2px 8px rgba(26,23,20,0.08);
+  --shadow-md: 0 4px 16px rgba(26,23,20,0.10);
+  --shadow-lg: 0 8px 32px rgba(26,23,20,0.12);
+
+  /* Typography */
+  --font-ui:   'Inter', system-ui, sans-serif;
+  --font-body: 'Crimson Pro', Georgia, serif;
+
+  /* Transitions */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─── Base Reset ────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-ui);
+  background-color: var(--cream-100);
+  color: var(--ink-900);
+  line-height: 1.6;
+  min-height: 100dvh;
+}
+
+#root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Typography ────────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ink-900);
+}
+
+.font-serif {
+  font-family: var(--font-body);
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--ink-200);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--ink-300); }
+
+/* ─── Utility Classes ───────────────────────────────────────────── */
+.card {
+  background: var(--cream-50);
+  border: 1px solid var(--cream-300);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
+}
+
+.card-dashed {
+  background: var(--cream-50);
+  border: 1.5px dashed var(--ink-200);
+  border-radius: var(--radius-lg);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.badge-mode {
+  background: var(--cream-200);
+  color: var(--ink-700);
+  border: 1px solid var(--ink-100);
+}
+
+.badge-presence {
+  background: var(--ink-900);
+  color: var(--cream-50);
+}
+
+/* ─── Buttons ───────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s var(--ease-smooth);
+  border: none;
+  outline: none;
+  white-space: nowrap;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background: var(--ink-900);
+  color: var(--cream-50);
+}
+.btn-primary:hover { background: var(--ink-700); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+.btn-primary:active { transform: translateY(0); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--ink-700);
+  border: 1.5px solid var(--ink-200);
+}
+.btn-secondary:hover { background: var(--cream-200); border-color: var(--ink-300); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-500);
+  padding: 8px 12px;
+}
+.btn-ghost:hover { background: var(--cream-200); color: var(--ink-700); }
+
+.btn-accent {
+  background: var(--accent);
+  color: white;
+}
+.btn-accent:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+
+.btn-sm { padding: 6px 14px; font-size: 13px; border-radius: var(--radius-sm); }
+.btn-lg { padding: 13px 28px; font-size: 15px; border-radius: var(--radius-lg); }
+.btn-full { width: 100%; }
+
+.btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
+
+/* ─── Form Elements ─────────────────────────────────────────────── */
+.input {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--cream-50);
+  border: 1.5px solid var(--ink-100);
+  border-radius: var(--radius-md);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--ink-900);
+  transition: border-color 0.15s var(--ease-smooth), box-shadow 0.15s var(--ease-smooth);
+  outline: none;
+}
+.input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(45,106,79,0.12);
+}
+.input::placeholder { color: var(--ink-300); }
+
+.label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-700);
+  margin-bottom: 6px;
+}
+
+/* ─── Avatar ────────────────────────────────────────────────────── */
+.avatar {
+  border-radius: 50%;
+  background: var(--cream-200);
+  color: var(--ink-700);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+.avatar-sm  { width: 28px; height: 28px; font-size: 11px; }
+.avatar-md  { width: 36px; height: 36px; font-size: 14px; }
+.avatar-lg  { width: 52px; height: 52px; font-size: 20px; }
+.avatar-xl  { width: 80px; height: 80px; font-size: 28px; }
+
+/* ─── Progress Bar ──────────────────────────────────────────────── */
+.progress-bar {
+  height: 3px;
+  background: var(--ink-100);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--ink-900);
+  border-radius: 99px;
+  transition: width 0.4s var(--ease-smooth);
+}
+
+/* ─── Animations ────────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.animate-fade-in  { animation: fadeIn  0.2s var(--ease-smooth) both; }
+.animate-slide-up { animation: slideUp 0.25s var(--ease-smooth) both; }
+.animate-scale-in { animation: scaleIn 0.2s var(--ease-spring) both; }
+
+/* ─── Overlay / Modal ───────────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26,23,20,0.45);
+  backdrop-filter: blur(4px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal {
+  background: var(--cream-50);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  max-width: 480px;
+  width: 100%;
+  padding: 32px;
+}
+
+/* ─── Reader specific ───────────────────────────────────────────── */
+.reader-page {
+  background: white;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  position: relative;
+}
+
+.reader-page canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ─── Online dot ────────────────────────────────────────────────── */
+.online-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: pulse-dot 2s infinite;
+}
+
+/* ─── Divider ───────────────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: var(--ink-100);
+  margin: 16px 0;
+}
+
+/* ─── Tooltip ───────────────────────────────────────────────────── */
+.tooltip {
+  position: relative;
+}
+.tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink-900);
+  color: var(--cream-50);
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.tooltip:hover::after { opacity: 1; }
